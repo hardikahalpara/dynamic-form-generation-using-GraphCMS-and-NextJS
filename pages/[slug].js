@@ -1,7 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import Form from "../components/Form";
 
-const graphcms = new GraphQLClient("https://api-ap-northeast-1.graphcms.com/v2/ckbnil26x0fj201xu3ruggr6r/master");
+const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT);
 
 // export default function Index(props) {
 //   return (
@@ -13,7 +13,6 @@ const graphcms = new GraphQLClient("https://api-ap-northeast-1.graphcms.com/v2/c
 // }
 export default function Index({ pages }) {
   const { form } = pages[0];
-
   return <Form {...form} />;
 }
 export async function getStaticPaths() {
@@ -35,6 +34,7 @@ export async function getStaticProps({ params: variables }) {
       title
       slug
       form {
+        id
         fields {
           __typename
           ... on FormInput {

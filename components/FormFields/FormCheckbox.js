@@ -9,7 +9,7 @@ export default function FormCheckbox({ checkboxLabel, ...rest }) {
       <label htmlFor={checkboxname}>
         <input
           ref={register({ required: rest.required })}
-          id={name}
+          id={checkboxname}
           type="checkbox"
           name={checkboxname}
           {...rest}
