@@ -1,13 +1,21 @@
 import { GraphQLClient } from "graphql-request";
+import Form from "../components/Form";
 
 const graphcms = new GraphQLClient("https://api-ap-northeast-1.graphcms.com/v2/ckbnil26x0fj201xu3ruggr6r/master");
 
-export default function Index(props) {
-  return (
-    <pre>{JSON.stringify(props, null, 2)}</pre>
-  )
-}
+// export default function Index(props) {
+//   return (
+//     <pre>{JSON.stringify(props, null, 2)}</pre>
+//   )
+// }
+// export default function Index(props) {
+//   return <Form {...props.pages[0].form} />;
+// }
+export default function Index({ pages }) {
+  const { form } = pages[0];
 
+  return <Form {...form} />;
+}
 export async function getStaticPaths() {
   const { pages } = await graphcms.request(`{
         pages {
@@ -43,7 +51,7 @@ export async function getStaticProps({ params: variables }) {
             required
           }
           ... on FormCheckbox {
-            checkboxName:name
+            checkboxname:name
             checkboxLabel: label
             required
           }
