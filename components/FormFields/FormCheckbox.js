@@ -1,11 +1,20 @@
+import { useFormContext } from "react-hook-form";
+
 export default function FormCheckbox({ checkboxLabel, ...rest }) {
-  const { name } = rest;
+  const { register } = useFormContext();
+  const { checkboxname } = rest;
 
   return (
     <div>
-      <label htmlFor={name}>
-        <input id={name} type="checkbox" {...rest} />
-        {checkboxLabel || name}
+      <label htmlFor={checkboxname}>
+        <input
+          ref={register({ required: rest.required })}
+          id={name}
+          type="checkbox"
+          name={checkboxname}
+          {...rest}
+        />
+        {checkboxLabel || checkboxname}
       </label>
     </div>
   );

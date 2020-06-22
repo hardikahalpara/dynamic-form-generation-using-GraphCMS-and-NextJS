@@ -1,10 +1,18 @@
+import { useFormContext } from "react-hook-form";
+
 export default function FormTextarea({ textareaLabel, ...rest }) {
+  const { register } = useFormContext();
   const { name } = rest;
 
   return (
     <div>
-      <label htmlFor={name}>{textareaLabel || name}</label>
-      <textarea id={name} {...rest} />
+      <label>{textareaLabel || name}</label>
+      <textarea
+        ref={register({ required: rest.required })}
+        htmlFor={name}
+        id={name}
+        {...rest}
+      />
     </div>
   );
 }
